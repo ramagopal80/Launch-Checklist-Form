@@ -24,7 +24,7 @@ window.addEventListener("load", function() {
 
 	form.addEventListener("submit", function(event) {
 		event.preventDefault();
-		event.stopPropagation();
+		 event.stopPropagation();
 
 		let items = document.getElementById('faultyItems');
 		let launchStatus = document.getElementById('launchStatus');
@@ -37,7 +37,7 @@ window.addEventListener("load", function() {
 		let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
 		let cargoMass = document.querySelector("input[name=cargoMass]").value;
 
-		if (pilotName === "" || copilotName === "" || fuelLevel === '' || isNaN(fuelLevel) || cargoMass === '' || isNaN(cargoMass) ) {
+		if (pilotName === "" || copilotName === "" || fuelLevel === '' || cargoMass === '') {
 
 			alert("All fields are required!");
 			items.style.visibility = 'hidden';
@@ -45,7 +45,16 @@ window.addEventListener("load", function() {
 			launchStatus.style.color = 'black';
 			launchStatus.innerHTML = 'Awaiting Information Before Launch';
 
-		} else {
+		} 
+		else if (isNaN(fuelLevel) || isNaN(cargoMass)){
+			alert("Make sure to enter valid information in each field");
+			items.style.visibility = 'hidden';
+
+			launchStatus.style.color = 'black';
+			launchStatus.innerHTML = 'Awaiting Information Before Launch';
+		}
+
+		else {
 
 			items.style.visibility = 'visible';
 

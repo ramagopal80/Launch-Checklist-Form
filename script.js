@@ -8,7 +8,14 @@ window.addEventListener("load", function() {
 
 	form.addEventListener("submit", function(event) {
 		event.preventDefault();
-		 event.stopPropagation();
+		function allLetter(inputtxt)
+		{
+			var letters = /^[A-Za-z]+$/;
+			if(inputtxt.match(letters))
+			{
+			return true;
+			 }
+		 }
 
 		let items = document.getElementById('faultyItems');
 		let launchStatus = document.getElementById('launchStatus');
@@ -31,7 +38,18 @@ window.addEventListener("load", function() {
 
 		} 
 		else if (isNaN(fuelLevel) || isNaN(cargoMass)){
-			alert("Make sure to enter valid information in each field");
+			alert("Make sure to enter valid number");
+			items.style.visibility = 'hidden';
+
+			launchStatus.style.color = 'black';
+			launchStatus.innerHTML = 'Awaiting Information Before Launch';
+		}
+		
+		 
+
+		else if (!allLetter(pilotName) || !allLetter(copilotName)){
+			
+			alert("Make sure to enter valid name");
 			items.style.visibility = 'hidden';
 
 			launchStatus.style.color = 'black';
@@ -40,10 +58,12 @@ window.addEventListener("load", function() {
 
 		else {
 
+			// console.log(typeof(pilotName));
+			// console.log(typeof(pilotName));
 			items.style.visibility = 'visible';
 
-			document.getElementById('pilotStatus').innerHTML = `Pilot ${ pilotName + ' ' }Ready`
-			document.getElementById('copilotStatus').innerHTML = `Co-pilot ${ copilotName + ' ' }Ready`
+			document.getElementById('pilotStatus').innerHTML = `Pilot ${ pilotName } Ready`
+			document.getElementById('copilotStatus').innerHTML = `Co-pilot ${ copilotName } Ready`
 
 			if (fuelLevel < 10000) {
 				ready = false;

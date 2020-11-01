@@ -8,15 +8,7 @@ window.addEventListener("load", function() {
 
 	form.addEventListener("submit", function(event) {
 		event.preventDefault();
-		function allLetter(inputtxt)
-		{
-			var letters = /^[A-Za-z]+$/;
-			if(inputtxt.match(letters))
-			{
-			return true;
-			 }
-		 }
-
+	
 		let items = document.getElementById('faultyItems');
 		let launchStatus = document.getElementById('launchStatus');
 		let fuelStatus = document.getElementById('fuelStatus');
@@ -46,9 +38,8 @@ window.addEventListener("load", function() {
 		}
 		
 		 
-
-		else if (!allLetter(pilotName) || !allLetter(copilotName)){
-			
+		else if(!isNaN(pilotName) || !isNaN(copilotName)){
+					
 			alert("Make sure to enter valid name");
 			items.style.visibility = 'hidden';
 
